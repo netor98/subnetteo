@@ -6,20 +6,17 @@ import javax.swing.JPanel;
 
 
 public class diseño extends javax.swing.JFrame {
-    
-
-
+   
     public diseño() {
         initComponents();
         this.setLocationRelativeTo(null);
         alinearTexto();
-        
-        
     }
     
     
     public void alinearTexto(){
         campoID.setHorizontalAlignment(0);
+        campoSubredes.setHorizontalAlignment(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,8 +26,10 @@ public class diseño extends javax.swing.JFrame {
         panelPrincipal = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
         campoID = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        idEtiqueta = new javax.swing.JLabel();
         botonCalcular = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        campoSubredes = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,9 +46,10 @@ public class diseño extends javax.swing.JFrame {
         campoID.setForeground(new java.awt.Color(238, 238, 238));
         campoID.setBorder(null);
 
-        jLabel1.setFont(new java.awt.Font("Hack Nerd Font", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(238, 238, 238));
-        jLabel1.setText("ID RED");
+        idEtiqueta.setFont(new java.awt.Font("Hack Nerd Font", 1, 18)); // NOI18N
+        idEtiqueta.setForeground(new java.awt.Color(238, 238, 238));
+        idEtiqueta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        idEtiqueta.setText("ID RED");
 
         botonCalcular.setText("CALCULAR");
         botonCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -58,25 +58,40 @@ public class diseño extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setBackground(new java.awt.Color(57, 62, 70));
+        jComboBox1.setFont(new java.awt.Font("Hack Nerd Font", 1, 16)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(238, 238, 238));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Subredes", "Host" }));
+        jComboBox1.setBorder(null);
+        jComboBox1.setFocusable(false);
+
+        campoSubredes.setBackground(new java.awt.Color(57, 62, 70));
+        campoSubredes.setFont(new java.awt.Font("Hack Nerd Font", 0, 16)); // NOI18N
+        campoSubredes.setForeground(new java.awt.Color(238, 238, 238));
+        campoSubredes.setBorder(null);
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(333, 333, 333)
-                .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(334, 334, 334))
-            .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1)
-                        .addGap(38, 38, 38)
-                        .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGap(236, 236, 236)
-                        .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(333, 333, 333)
+                        .addComponent(titulo))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox1, 0, 117, Short.MAX_VALUE)
+                            .addComponent(idEtiqueta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoSubredes, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(campoID))))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,8 +101,12 @@ public class diseño extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(campoID)
-                    .addComponent(jLabel1))
-                .addGap(247, 247, 247)
+                    .addComponent(idEtiqueta, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(41, 41, 41)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoSubredes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(181, 181, 181)
                 .addComponent(botonCalcular)
                 .addGap(108, 108, 108))
         );
@@ -112,12 +131,40 @@ public class diseño extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCalcularMouseClicked
-        identificarClase();
+        calculoSubredes();
     }//GEN-LAST:event_botonCalcularMouseClicked
-    //esa última no debería de jalar, pero ya me dio hueva.
-    //holaaaaaaaaaaa
-    private void identificarClase(){
+
+    private void calculoSubredes(){
+        if (identificarClase()){
+            
+            try {
+                int redesSolicitadas = Integer.parseInt(campoSubredes.getText());
+                
+                int redes = 0, i = 0;
+                while (redes < redesSolicitadas){
+                    redes = (int) Math.pow(2, i);
+                    i++;
+                } 
+                i -= 1;
+                System.out.println(i);
+                System.out.println(redes + "\n" + (redes - 2));
+                
+            } catch(NumberFormatException e){
+                mensajeError();
+            }
+            
+
+        }
+        else{
+            mensajeError();
+        }
+    }
+    
+    
+    
+    private boolean identificarClase(){
         String cadenaIp = campoID.getText();
+        
         if (aceptarIP(cadenaIp)){
             
             int clase = Integer.parseInt(cadenaIp.substring(0, cadenaIp.indexOf(".")));
@@ -138,28 +185,41 @@ public class diseño extends javax.swing.JFrame {
                 System.out.println("CLASE E");
             }
             else{
-                mensajeError();
+                return false;
             }
-        }   
-    }
-    
-    
-    private boolean aceptarIP(String ip){
-        String[] octetos = ip.split("\\.");
-
-        try{
-            for (String octeto : octetos){
-                Integer.parseInt(octeto);
-            }    
-        } catch (NumberFormatException e){
-            mensajeError();
+        }
+        else{
             return false;
         }
         return true;
     }
     
+    
+    private boolean aceptarIP(String ip){
+        String[] octetos = ip.split("\\.");
+        
+        if (octetos.length != 4){
+            return false;
+        }
+         
+        //Excepcion si un octeto de la dirección no es número.
+        try{
+            for (String octeto : octetos){
+                int num = Integer.parseInt(octeto);
+                //A la vez, si es número se verifica que no sobrepase 255
+                if (num > 255) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (NumberFormatException e){;
+            return false;
+        }
+        
+    }
+    
     private void mensajeError(){
-        JOptionPane.showMessageDialog(this.panelPrincipal, "Direccion invalida", "ERROR",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this.panelPrincipal, "Datos invalidos", "ERROR",JOptionPane.ERROR_MESSAGE);
     }
     
 
@@ -176,7 +236,9 @@ public class diseño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCalcular;
     private javax.swing.JTextField campoID;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField campoSubredes;
+    private javax.swing.JLabel idEtiqueta;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
