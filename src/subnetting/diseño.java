@@ -1,11 +1,15 @@
 
 package subnetting;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
 public class diseño extends javax.swing.JFrame {
+    String[] mascaras = {"255.0.0.0", "255.255.0.0", "255.255.255.0"};
+    int seleccionarMascara = 0;
+    
    
     public diseño() {
         initComponents();
@@ -20,6 +24,8 @@ public class diseño extends javax.swing.JFrame {
         totalSubredes.setHorizontalAlignment(0);
         subredesPracticas.setHorizontalAlignment(0);
         subredesTeoricas.setHorizontalAlignment(0);
+        campoMascara.setHorizontalAlignment(0);
+        mascaraEtiqueta.setHorizontalAlignment(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +49,8 @@ public class diseño extends javax.swing.JFrame {
         practicoEtiqeuta = new javax.swing.JLabel();
         teoricoEtiqueta = new javax.swing.JLabel();
         totalHosts = new javax.swing.JLabel();
+        mascaraEtiqueta = new javax.swing.JLabel();
+        campoMascara = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,15 +67,22 @@ public class diseño extends javax.swing.JFrame {
         campoID.setForeground(new java.awt.Color(238, 238, 238));
         campoID.setBorder(null);
 
-        idEtiqueta.setFont(new java.awt.Font("Hack Nerd Font", 1, 18)); // NOI18N
+        idEtiqueta.setFont(new java.awt.Font("Hack Nerd Font", 1, 16)); // NOI18N
         idEtiqueta.setForeground(new java.awt.Color(238, 238, 238));
         idEtiqueta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         idEtiqueta.setText("ID RED");
 
+        botonCalcular.setBackground(new java.awt.Color(57, 62, 70));
+        botonCalcular.setFont(new java.awt.Font("Hack Nerd Font", 1, 16)); // NOI18N
+        botonCalcular.setForeground(new java.awt.Color(238, 238, 238));
         botonCalcular.setText("CALCULAR");
+        botonCalcular.setBorder(null);
         botonCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonCalcularMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonCalcularMouseExited(evt);
             }
         });
 
@@ -127,95 +142,113 @@ public class diseño extends javax.swing.JFrame {
         totalHosts.setForeground(new java.awt.Color(238, 238, 238));
         totalHosts.setText("HOST * SUBRED");
 
+        mascaraEtiqueta.setFont(new java.awt.Font("Hack Nerd Font", 1, 16)); // NOI18N
+        mascaraEtiqueta.setForeground(new java.awt.Color(238, 238, 238));
+        mascaraEtiqueta.setText("MÁSCARA");
+
+        campoMascara.setBackground(new java.awt.Color(57, 62, 70));
+        campoMascara.setFont(new java.awt.Font("Hack Nerd Font", 0, 16)); // NOI18N
+        campoMascara.setForeground(new java.awt.Color(238, 238, 238));
+        campoMascara.setBorder(null);
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(teoricoSubredes)
+                    .addComponent(practicoSubredes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(333, 333, 333)
-                        .addComponent(titulo))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(teoricoSubredes)
-                            .addComponent(practicoSubredes))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(totalSubredes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(subredesPracticas, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(subredesTeoricas, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(eleccion, 0, 117, Short.MAX_VALUE)
-                                    .addComponent(idEtiqueta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(35, 35, 35)
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(campoSubredes, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                    .addComponent(campoID, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(totalSubredes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(subredesPracticas, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(subredesTeoricas, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                                .addComponent(teoricoEtiqueta)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(hostTeoricos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                                .addComponent(practicoEtiqeuta)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(hostsPracticos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(59, 59, 59))
+                                        .addComponent(teoricoEtiqueta)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(hostTeoricos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(totalHosts)
-                                        .addGap(54, 54, 54)))))))
-                .addGap(49, 49, 49))
+                                        .addComponent(practicoEtiqeuta)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(hostsPracticos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(94, 94, 94))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(totalHosts)
+                                .addGap(89, 89, 89))))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(eleccion, 0, 117, Short.MAX_VALUE)
+                                .addComponent(mascaraEtiqueta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(idEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoSubredes, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoID)
+                            .addComponent(campoMascara))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addGap(0, 230, Short.MAX_VALUE)
                 .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(229, 229, 229))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(titulo)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                .addGap(18, 27, Short.MAX_VALUE)
+                .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idEtiqueta, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(eleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoSubredes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(campoID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(totalSubredes)
-                            .addComponent(totalHosts))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(eleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoSubredes, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(subredesTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(teoricoSubredes))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(subredesPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(practicoSubredes)))
+                            .addComponent(mascaraEtiqueta)
+                            .addComponent(campoMascara, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(totalHosts, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(totalSubredes))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(subredesTeoricas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(teoricoSubredes))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(subredesPracticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(practicoSubredes)))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(hostTeoricos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(teoricoEtiqueta))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(hostsPracticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(practicoEtiqeuta))))
+                        .addGap(101, 101, 101)
+                        .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hostTeoricos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(teoricoEtiqueta))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hostsPracticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(practicoEtiqeuta))))
-                .addGap(113, 113, 113)
-                .addComponent(botonCalcular)
-                .addGap(37, 37, 37))
+                        .addComponent(idEtiqueta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         campoID.getAccessibleContext().setAccessibleName("");
@@ -237,11 +270,16 @@ public class diseño extends javax.swing.JFrame {
 
     private void botonCalcularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCalcularMouseClicked
         calculoSubredes();
+        botonCalcular.setForeground(new Color(57, 62, 70));
+        botonCalcular.setBackground(new Color(238, 238, 238));
     }//GEN-LAST:event_botonCalcularMouseClicked
 
-    //avance pa, wachate
-    
-    private void nuevaMascara(int unos){
+    private void botonCalcularMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCalcularMouseExited
+        botonCalcular.setForeground(new Color(238, 238, 238));
+        botonCalcular.setBackground(new Color(57, 62, 70));
+    }//GEN-LAST:event_botonCalcularMouseExited
+
+    private void nuevaMascara(int unos, int clase){
         int[] escala = {128,64,32,16,8,4,2,1};
         int res = 0;
         
@@ -250,8 +288,9 @@ public class diseño extends javax.swing.JFrame {
                 res += (escala[i] * 1);
                 unos--;
             }
-
         }
+        String mascara = mascaras[seleccionarMascara];
+        campoMascara.setText(mascara.replaceFirst("0", String.valueOf(res)));
         System.out.println(res);
     }
     
@@ -267,7 +306,7 @@ public class diseño extends javax.swing.JFrame {
                     i++;
                 } 
                 i -= 1;
-                nuevaMascara(i);
+                nuevaMascara(i, seleccionarMascara);
                 subredesTeoricas.setText(String.valueOf(redes));
                 subredesPracticas.setText(String.valueOf(redes - 2));
 
@@ -276,7 +315,7 @@ public class diseño extends javax.swing.JFrame {
                 mensajeError();
             }
             
-
+            
         }
         else{
             mensajeError();
@@ -294,18 +333,17 @@ public class diseño extends javax.swing.JFrame {
 
             if (clase >= 0 && clase <= 127 ){
                 System.out.println("CLASE A");
+                seleccionarMascara = 0;
             }
             else if (clase >= 128 && clase <= 191){
                 System.out.println("CLASE B");
+                System.out.println(mascaras[1]);
+                seleccionarMascara = 1;
             }
             else if (clase >= 192 && clase <= 223){
                 System.out.println("CLASE C");
-            }
-            else if (clase >= 224 && clase <= 239){
-                System.out.println("CLASE D");
-            }
-            else if (clase >= 240 && clase <= 255){
-                System.out.println("CLASE E");
+                System.out.println(mascaras[2]);
+                seleccionarMascara = 2;
             }
             else{
                 return false;
@@ -359,11 +397,13 @@ public class diseño extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCalcular;
     private javax.swing.JTextField campoID;
+    private javax.swing.JTextField campoMascara;
     private javax.swing.JTextField campoSubredes;
     private javax.swing.JComboBox<String> eleccion;
     private javax.swing.JTextField hostTeoricos;
     private javax.swing.JTextField hostsPracticos;
     private javax.swing.JLabel idEtiqueta;
+    private javax.swing.JLabel mascaraEtiqueta;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JLabel practicoEtiqeuta;
     private javax.swing.JLabel practicoSubredes;
