@@ -279,18 +279,34 @@ public class diseño extends javax.swing.JFrame {
         botonCalcular.setBackground(new Color(57, 62, 70));
     }//GEN-LAST:event_botonCalcularMouseExited
 
+    
+    
     private void nuevaMascara(int unos, int clase){
         int[] escala = {128,64,32,16,8,4,2,1};
         int res = 0;
+        StringBuilder nuevaMasc = new StringBuilder(mascaras[seleccionarMascara]);
+        System.out.println(unos);
+        System.out.println(nuevaMasc);
         
-        for (int i = 0 ; i < escala.length; i++){
-            if (unos > 0){
-                res += (escala[i] * 1);
-                unos--;
+        
+        int i = 0;
+        while (unos > 0){
+            if (i > 7) i = 0;
+            if (res >= 255){
+                nuevaMasc.replace(nuevaMasc.indexOf("0"), nuevaMasc.indexOf("0") + 1, String.valueOf(res)); 
+                res = 0;
             }
+            res += (escala[i] * 1);
+            i++;
+            unos--;
         }
-        String mascara = mascaras[seleccionarMascara];
-        campoMascara.setText(mascara.replaceFirst("0", String.valueOf(res)));
+        
+        try{
+            nuevaMasc.replace(nuevaMasc.indexOf("0"), nuevaMasc.indexOf("0") + 1, String.valueOf(res));
+        }  catch (StringIndexOutOfBoundsException e){
+            nuevaMasc.replace(0, nuevaMasc.length(), "255.255.255.255");
+        }
+        campoMascara.setText(String.valueOf(nuevaMasc));
         System.out.println(res);
     }
     
@@ -299,16 +315,23 @@ public class diseño extends javax.swing.JFrame {
             
             try {
                 int redesSolicitadas = Integer.parseInt(campoSubredes.getText());
-                
+
                 int redes = 0, i = 0;
                 while (redes < redesSolicitadas){
                     redes = (int) Math.pow(2, i);
                     i++;
                 } 
                 i -= 1;
-                nuevaMascara(i, seleccionarMascara);
-                subredesTeoricas.setText(String.valueOf(redes));
-                subredesPracticas.setText(String.valueOf(redes - 2));
+                
+                if (redesSolicitadas > 0){
+                    nuevaMascara(i, seleccionarMascara);
+                    subredesTeoricas.setText(String.valueOf(redes));
+                    subredesPracticas.setText(String.valueOf(redes - 2));
+                }
+                else{
+                    mensajeError();
+                }
+
 
                 
             } catch(NumberFormatException e){
@@ -368,7 +391,7 @@ public class diseño extends javax.swing.JFrame {
             for (String octeto : octetos){
                 int num = Integer.parseInt(octeto);
                 //A la vez, si es número se verifica que no sobrepase 255
-                if (num > 255) {
+                if (num > 255 || num < 0) {
                     return false;
                 }
             }
@@ -380,6 +403,9 @@ public class diseño extends javax.swing.JFrame {
     }
     
     private void mensajeError(){
+        campoID.setText("");
+        campoSubredes.setText("");
+        campoMascara.setText("");
         JOptionPane.showMessageDialog(this.panelPrincipal, "Datos invalidos", "ERROR",JOptionPane.ERROR_MESSAGE);
     }
     
